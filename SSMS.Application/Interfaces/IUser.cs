@@ -4,8 +4,10 @@ namespace SSMS.Application.Interfaces
 {
     public interface IUser
     {
-        Task<IEnumerable<UserDto>> GetAllAsync();
-        Task<UserDto?> GetByIdAsync(int id);
-        Task CreateAsync(UserDto dto);
+        List<UserDto> GetUsers();
+        UserDto GetUserById(int id);
+        bool UpdateUser(UserDto dto);
+        bool AddUser(UserDto dto);
+        bool DeleteUserById(int id);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SSMS.API.Data.Entitities;
-using SSMS.API.Data;
-using SSMS.API.Data.Interfaces;
+using SSMS.Application.DTOs;
+using SSMS.Application.Interfaces;
 
 namespace SSMS.API.Controllers
 {
@@ -28,16 +27,16 @@ namespace SSMS.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser(UserDto dto)
         {
-            var result = _user.UpdateUser(user);
+            var result = _user.UpdateUser(dto);
             return Ok("Data updated successfully!");
         }
 
         [HttpPost]
-        public IActionResult AddUser(User user)
+        public IActionResult AddUser(UserDto dto)
         {
-            var result = _user.AddUser(user);
+            var result = _user.AddUser(dto);
             return Ok("Data added successfully!");
         }
 

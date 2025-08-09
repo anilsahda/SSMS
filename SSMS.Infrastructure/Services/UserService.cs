@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SSMS.Application.DTOs;
+﻿using SSMS.Application.DTOs;
 using SSMS.Application.Interfaces;
 using SSMS.Domain.Entities;
 
@@ -13,37 +12,42 @@ namespace SSMS.Infrastructure.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<UserDto>> GetAllAsync()
+        public List<UserDto> GetUsers()
         {
-            return await _context.Users.Select(u => new UserDto
+            return _context.Users.Select(u => new UserDto
             {
                 Id = u.Id,
                 Name = u.Name,
                 Email = u.Email
-            }).ToListAsync();
+            }).ToList();
         }
 
-        public async Task<UserDto?> GetByIdAsync(int id)
+        public UserDto GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            return user == null ? null : new UserDto
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Email = user.Email
-            };
+            var user = _context.Users.Find(id);
+            return new UserDto { Id = user.Id, Name = user.Name, Email = user.Email };
         }
 
-        public async Task CreateAsync(UserDto dto)
+        public bool AddUser(UserDto dto)
         {
-            var user = new User
-            {
-                Name = dto.Name,
-                Email = dto.Email,
-                Password = dto.Password
-            };
+            _context.Users.Add(new User { Name = dto.Name, Email = dto.Email, Password = dto.Password });
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateUser(UserDto dto)
+        {
+            _context.Users.Update(new User {Id=dto.Id,Name=dto.Name, Email=dto.Email, Password=dto.Password});
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteUserById(int id)
+        {
+            var user = _context.Users.Find(id);
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+            return true;
         }
     }
 }

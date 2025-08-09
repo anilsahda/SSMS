@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using SSMS.API.Data;
-using SSMS.API.Data.Interfaces;
-using SSMS.API.Data.Services;
+using SSMS.Application.Interfaces;
+using SSMS.Infrastructure;
+using SSMS.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
