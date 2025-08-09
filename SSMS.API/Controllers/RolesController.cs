@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SSMS.API.Data;
 using SSMS.API.Data.Entitities;
+using SSMS.API.Data.Interfaces;
 
 namespace SSMS.API.Controllers
 {
@@ -8,46 +8,42 @@ namespace SSMS.API.Controllers
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public RolesController(AppDbContext context)
+        private readonly IRole _role;
+        public RolesController(IRole role)
         {
-            _context = context;
+            _role = role;
         }
 
         [HttpGet]
         public IActionResult GetRoles()
         {
-            return Ok(_context.Roles.ToList());
+            return Ok(_role.GetRoles());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetRole(int id)
         {
-            return Ok(_context.Roles.Find(id));
+            return Ok(_role.GetRoleById(id));
         }
 
         [HttpPut]
         public IActionResult UpdateRole(Role role)
         {
-            _context.Roles.Update(role);
-            _context.SaveChanges();
+            var result = _role.UpdateRole(role);
             return Ok("Data updated successfully!");
         }
 
         [HttpPost]
         public IActionResult AddRole(Role role)
         {
-            _context.Roles.Add(role);
-            _context.SaveChanges();
+            var result = _role.AddRole(role);
             return Ok("Data added successfully!");
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteRoleById(int id)
         {
-            var role = _context.Roles.Find(id);
-            _context.Roles.Remove(role);
-            _context.SaveChanges();
+            var result = _role.DeleteRoleById(id);
             return Ok("Data deleted successfully!");
         }
     }

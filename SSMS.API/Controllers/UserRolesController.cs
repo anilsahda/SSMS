@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SSMS.API.Data.Entitities;
-using SSMS.API.Data;
+using SSMS.API.Data.Interfaces;
 
 namespace SSMS.API.Controllers
 {
@@ -8,48 +8,43 @@ namespace SSMS.API.Controllers
     [ApiController]
     public class UserRolesController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public UserRolesController(AppDbContext context)
+        private readonly IUserRole _userRole;
+        public UserRolesController(IUserRole userRole)
         {
-            _context = context;
+            _userRole = userRole;
         }
 
         [HttpGet]
-        public IActionResult GetUserRole()
+        public IActionResult GetUserRoles()
         {
-            return Ok(_context.UserRoles.ToList());
+            return Ok(_userRole.GetUserRoles());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUserRole(int id)
+        public IActionResult GetUserRoleById(int id)
         {
-            return Ok(_context.UserRoles.Find(id));
+            return Ok(_userRole.GetUserRoleById(id));
         }
 
         [HttpPut]
-        public IActionResult UpdateUserRole(UserRole userRole)
+        public IActionResult UpdateUser(UserRole userRole)
         {
-            _context.UserRoles.Update(userRole);
-            _context.SaveChanges();
+            var result = _userRole.UpdateUserRole(userRole);
             return Ok("Data updated successfully!");
         }
 
         [HttpPost]
         public IActionResult AddUserRole(UserRole userRole)
         {
-            _context.UserRoles.Add(userRole);
-            _context.SaveChanges();
+            var result = _userRole.AddUserRole(userRole);
             return Ok("Data added successfully!");
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUserRoleById(int id)
         {
-            var userRole = _context.UserRoles.Find(id);
-            _context.UserRoles.Remove(userRole);
-            _context.SaveChanges();
+            var result = _userRole.DeleteUserRoleById(id);
             return Ok("Data deleted successfully!");
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SSMS.API.Data.Entitities;
 using SSMS.API.Data;
+using SSMS.API.Data.Interfaces;
 
 namespace SSMS.API.Controllers
 {
@@ -8,46 +9,42 @@ namespace SSMS.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public UsersController(AppDbContext context)
+        private readonly IUser _user;
+        public UsersController(IUser user)
         {
-            _context = context;
+            _user = user;
         }
 
         [HttpGet]
-        public IActionResult GetUser()
+        public IActionResult GetUsers()
         {
-            return Ok(_context.Users.ToList());
+            return Ok(_user.GetUsers());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public IActionResult GetUserById(int id)
         {
-            return Ok(_context.Users.Find(id));
+            return Ok(_user.GetUserById(id));
         }
 
         [HttpPut]
         public IActionResult UpdateUser(User user)
         {
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            var result = _user.UpdateUser(user);
             return Ok("Data updated successfully!");
         }
 
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            var result = _user.AddUser(user);
             return Ok("Data added successfully!");
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUserById(int id)
         {
-            var user = _context.Users.Find(id);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
+            var result = _user.DeleteUserById(id);
             return Ok("Data deleted successfully!");
         }
     }
