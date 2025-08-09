@@ -21,4 +21,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SSMS.Application\SSMS.Application.csproj" />
+    <ProjectReference Include="..\SSMS.Infrastructure\SSMS.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

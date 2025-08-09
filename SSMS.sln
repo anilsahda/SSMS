@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMS.API", "SSMS.API\SSMS.API.csproj", "{26C2D08E-7884-4B24-9594-57F954ABF794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMS.Application", "SSMS.Application\SSMS.Application.csproj", "{40835C0A-AA92-4329-83FB-B0DF38752A67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMS.Domain", "SSMS.Domain\SSMS.Domain.csproj", "{128CDCB8-D389-4B50-B161-F547E7B79618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMS.Infrastructure", "SSMS.Infrastructure\SSMS.Infrastructure.csproj", "{C2087334-431B-4C54-94C6-ADE0C001FFD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{26C2D08E-7884-4B24-9594-57F954ABF794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C2D08E-7884-4B24-9594-57F954ABF794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C2D08E-7884-4B24-9594-57F954ABF794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40835C0A-AA92-4329-83FB-B0DF38752A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40835C0A-AA92-4329-83FB-B0DF38752A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40835C0A-AA92-4329-83FB-B0DF38752A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40835C0A-AA92-4329-83FB-B0DF38752A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128CDCB8-D389-4B50-B161-F547E7B79618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128CDCB8-D389-4B50-B161-F547E7B79618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128CDCB8-D389-4B50-B161-F547E7B79618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128CDCB8-D389-4B50-B161-F547E7B79618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2087334-431B-4C54-94C6-ADE0C001FFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2087334-431B-4C54-94C6-ADE0C001FFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2087334-431B-4C54-94C6-ADE0C001FFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2087334-431B-4C54-94C6-ADE0C001FFD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

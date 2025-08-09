@@ -1,4 +1,4 @@
-﻿namespace SSMS.API.Data.Entitities
+﻿namespace SSMS.Domain.Entities
 {
     public class User
     {
