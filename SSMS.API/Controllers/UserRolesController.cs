@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SSMS.API.Data.Entitities;
-using SSMS.API.Data.Interfaces;
+using SSMS.API.Data;
 
 namespace SSMS.API.Controllers
 {
@@ -8,43 +8,48 @@ namespace SSMS.API.Controllers
     [ApiController]
     public class UserRolesController : ControllerBase
     {
-        private readonly IUserRole _userRole;
-        public UserRolesController(IUserRole userRole)
+        private readonly AppDbContext _context;
+        public UserRolesController(AppDbContext context)
         {
-            _userRole = userRole;
+            _context = context;
         }
 
         [HttpGet]
-        public IActionResult GetUserRoles()
+        public IActionResult GetUserRole()
         {
-            return Ok(_userRole.GetUserRoles());
+            return Ok(_context.UserRoles.ToList());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUserRoleById(int id)
+        public IActionResult GetUserRole(int id)
         {
-            return Ok(_userRole.GetUserRoleById(id));
+            return Ok(_context.UserRoles.Find(id));
         }
 
         [HttpPut]
-        public IActionResult UpdateUser(UserRole userRole)
+        public IActionResult UpdateUserRole(UserRole userRole)
         {
-            var result = _userRole.UpdateUserRole(userRole);
+            _context.UserRoles.Update(userRole);
+            _context.SaveChanges();
             return Ok("Data updated successfully!");
         }
 
         [HttpPost]
         public IActionResult AddUserRole(UserRole userRole)
         {
-            var result = _userRole.AddUserRole(userRole);
+            _context.UserRoles.Add(userRole);
+            _context.SaveChanges();
             return Ok("Data added successfully!");
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUserRoleById(int id)
         {
-            var result = _userRole.DeleteUserRoleById(id);
+            var userRole = _context.UserRoles.Find(id);
+            _context.UserRoles.Remove(userRole);
+            _context.SaveChanges();
             return Ok("Data deleted successfully!");
         }
+
     }
 }
