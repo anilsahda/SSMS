@@ -6,5 +6,6 @@ namespace SSMS.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+
     }
 }
