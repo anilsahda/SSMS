@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SSMS.API.Data;
-using SSMS.API.Data.Interfaces;
-using SSMS.API.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +16,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddScoped<IUser, UserService>();
-builder.Services.AddScoped<IRole, RoleService>();
-builder.Services.AddScoped<IUserRole, UserRoleService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
