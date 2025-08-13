@@ -10,6 +10,14 @@ namespace SSMS.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Country>Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
+        public DbSet<EmployeeLanguage> EmployeeLanguages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,8 +30,8 @@ namespace SSMS.API.Data
             
             modelBuilder.Entity<User>().HasData(
                 new User { Id = 1, Name = "Anil", Email = "anil@gmail.com", Password = "123" },
-                new User { Id = 2, Name = "Amit", Email = "amit@gmail.com", Password = "123" },
-                new User { Id = 3, Name = "Sumit", Email = "sumit@gmail.com", Password = "123" });
+                new User { Id = 2, Name = "Admin", Email = "admin@gmail.com", Password = "123" },
+                new User { Id = 3, Name = "Intern", Email = "intern@gmail.com", Password = "123" });
             
             modelBuilder.Entity<UserRole>().HasData(
                 new UserRole { Id = 1, UserId = 1, RoleId = 1 },
