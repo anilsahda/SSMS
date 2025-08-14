@@ -74,7 +74,7 @@ namespace SSMS.API.Controllers
         }
 
         [HttpPost("AddImageUpload")]
-        public async Task<IActionResult> AddStudent([FromForm] StudentFormDTO studentDto)
+        public async Task<IActionResult> AddStudent([FromForm] StudentImageUploadDTO studentDto)
         {
             var student = new Student
             {
@@ -93,7 +93,7 @@ namespace SSMS.API.Controllers
             if (studentDto.Image != null)
             {
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(studentDto.Image.FileName)}";
-                var path = Path.Combine(_env.WebRootPath, "Uploads", fileName);
+                var path = Path.Combine(_env.WebRootPath, "api/Uploads", fileName);
                 using var stream = new FileStream(path, FileMode.Create);
                 await studentDto.Image.CopyToAsync(stream);
                 student.Image = fileName;
@@ -105,7 +105,7 @@ namespace SSMS.API.Controllers
         }
 
         [HttpPut("UpdateImageUpload")]
-        public async Task<IActionResult> UpdateStudent([FromForm] StudentFormDTO studentDto)
+        public async Task<IActionResult> UpdateStudent([FromForm] StudentImageUploadDTO studentDto)
         {
             var student = _context.Students.Find(studentDto.Id);
             if (student == null) return NotFound("Student not found");
@@ -124,7 +124,7 @@ namespace SSMS.API.Controllers
             if (studentDto.Image != null)
             {
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(studentDto.Image.FileName)}";
-                var path = Path.Combine(_env.WebRootPath, "Uploads", fileName);
+                var path = Path.Combine(_env.WebRootPath, "api/Uploads", fileName);
                 using var stream = new FileStream(path, FileMode.Create);
                 await studentDto.Image.CopyToAsync(stream);
                 student.Image = fileName;
