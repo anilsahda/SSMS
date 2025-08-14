@@ -14,6 +14,7 @@ namespace SSMS.API.Data
         public DbSet<State> States { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
