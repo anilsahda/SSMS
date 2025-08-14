@@ -1,6 +1,6 @@
 ﻿namespace SSMS.API.DTOs
 {
-    public class StudentDTO
+    public class StudentImageUploadDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -13,6 +13,6 @@
         public int StateId { get; set; }
         public int DistrictId { get; set; }
         public int GenderId { get; set; }
-        public string Image { get; set; }
+        public IFormFile Image { get; set; }
     }
 }
