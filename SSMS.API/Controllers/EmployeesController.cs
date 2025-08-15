@@ -32,7 +32,6 @@ namespace SSMS.API.Controllers
                     e.StateId,
                     e.DistrictId,
                     e.GenderId,
-                    e.Image,
                     Languages = _context.EmployeeLanguages.Where(x => x.EmployeeId == e.Id).ToList()
             })
                 .ToList();
@@ -56,7 +55,6 @@ namespace SSMS.API.Controllers
                     e.StateId,
                     e.DistrictId,
                     e.GenderId,
-                    e.Image,
                     Languages = _context.EmployeeLanguages.Where(x=>x.EmployeeId == id).ToList()
                 })
                 .FirstOrDefault();
@@ -78,8 +76,7 @@ namespace SSMS.API.Controllers
                 CountryId = employeedto.CountryId,
                 StateId = employeedto.StateId,
                 DistrictId = employeedto.DistrictId,
-                GenderId = employeedto.GenderId,
-                Image = employeedto.Image
+                GenderId = employeedto.GenderId
             };
 
             _context.Employees.Add(employee);
@@ -98,15 +95,11 @@ namespace SSMS.API.Controllers
             return Ok(employee);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateEmployee(int id, EmployeeDTO employeedto)
+        [HttpPut]
+        public IActionResult UpdateEmployee(EmployeeDTO employeedto)
         {
-            // Fetch existing employee from DB
-            var employee = _context.Employees.Find(id);
-            if (employee == null)
-                return NotFound("Employee not found");
-
-            // Update fields
+            var employee = new Employee();
+            employee.Id = employeedto.Id;
             employee.FirstName = employeedto.FirstName;
             employee.MiddleName = employeedto.MiddleName;
             employee.LastName = employeedto.LastName;
@@ -117,18 +110,18 @@ namespace SSMS.API.Controllers
             employee.StateId = employeedto.StateId;
             employee.DistrictId = employeedto.DistrictId;
             employee.GenderId = employeedto.GenderId;
-            employee.Image = employeedto.Image;
 
-            // Remove only languages related to this employee
-            var existingLanguages = _context.EmployeeLanguages.Where(el => el.EmployeeId == id).ToList();
+            _context.Employees.Update(employee);
+            _context.SaveChanges();
+
+            var existingLanguages = _context.EmployeeLanguages.Where(el => el.EmployeeId == employeedto.Id).ToList();
             _context.EmployeeLanguages.RemoveRange(existingLanguages);
 
-            // Add new languages
             foreach (var langId in employeedto.Languages)
             {
                 _context.EmployeeLanguages.Add(new EmployeeLanguage
                 {
-                    EmployeeId = id,
+                    EmployeeId = employeedto.Id,
                     LanguageId = langId
                 });
             }
