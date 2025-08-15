@@ -19,6 +19,7 @@ namespace SSMS.API.Data
         public DbSet<Language> Languages { get; set; }
         public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
         public DbSet<EmployeeLanguage> EmployeeLanguages { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

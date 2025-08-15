@@ -12,7 +12,6 @@
         public int CountryId { get; set; }
         public int StateId { get; set; }
         public int DistrictId { get; set; }
-        public int GenderId { get; set; } // for radio button
-        public string Image { get; set; }
+        public int GenderId { get; set; }
     }
 }

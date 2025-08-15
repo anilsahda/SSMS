@@ -2,6 +2,7 @@
 {
     public class EmployeeDTO
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -12,7 +13,6 @@
         public int StateId { get; set; }
         public int DistrictId { get; set; }
         public int GenderId { get; set; }
-        public string Image { get; set; }
         public List<int> Languages { get; set; }
     }
 }

@@ -13,6 +13,5 @@
         public int StateId { get; set; }
         public int DistrictId { get; set; }
         public int GenderId { get; set; }
-        public string Image { get; set; }
     }
 }
