@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SSMS.API.Data;
 using SSMS.API.Data.Entitities;
+using System.Text;
 
 namespace SSMS.API.Controllers
 {
@@ -60,7 +61,11 @@ namespace SSMS.API.Controllers
         public IActionResult GetPaginated(int pageNumber = 1, int pageSize = 10)
         {
             var totalRecords = _context.Students.Count();
-            var students = _context.Students.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var students =  _context.Students
+                                    .Skip((pageNumber - 1) * pageSize)
+                                    .Take(pageSize)
+                                    .ToList();
+
             var response = new
             {
                 TotalRecords = totalRecords,
@@ -70,6 +75,23 @@ namespace SSMS.API.Controllers
             };
 
             return Ok(response);
+        }
+
+        [HttpGet("export")]
+        public IActionResult ExportCsv()
+        {
+            var csv = new StringBuilder();
+            csv.AppendLine("Id,FirstName,Email,Mobile");
+
+            var students = _context.Students.ToList();
+
+            foreach (var student in students)
+            {
+                csv.AppendLine($"{student.Id},{student.FirstName},{student.Email},{student.Mobile}");
+            }
+
+            var bytes = Encoding.UTF8.GetBytes(csv.ToString());
+            return File(bytes, "text/csv", "students.csv");
         }
     }
 }
