@@ -1,11 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.Extensions.FileProviders;
 using SSMS.API.Data.Entitities;
 using SSMS.API.DTOs;
 using SSMS.API.Data;
@@ -26,8 +19,7 @@ public class CustomersController : ControllerBase
     [HttpGet]
     public IActionResult GetCustomers()
     {
-        var customers = _context.Customers.ToList();
-        return Ok(customers);
+        return Ok(_context.Customers.ToList());
     }
 
     [HttpPost("AddCustomer")]
