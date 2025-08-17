@@ -54,7 +54,7 @@ namespace SSMS.API.Controllers
             if (string.IsNullOrEmpty(query))
                 return Ok(_context.Students.ToList());
 
-            return Ok(_context.Students.Where(s => s.FirstName.Contains(query) || s.LastName.Contains(query)).ToList());
+            return Ok(_context.Students.Where(s => s.Name.Contains(query) || s.Email.Contains(query)).ToList());
         }
 
         [HttpGet("paginated")]
@@ -87,7 +87,7 @@ namespace SSMS.API.Controllers
 
             foreach (var student in students)
             {
-                csv.AppendLine($"{student.Id},{student.FirstName},{student.Email},{student.Mobile}");
+                csv.AppendLine($"{student.Id},{student.Name},{student.Email},{student.Mobile}");
             }
 
             var bytes = Encoding.UTF8.GetBytes(csv.ToString());

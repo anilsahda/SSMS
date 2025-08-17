@@ -20,21 +20,17 @@ namespace SSMS.API.Controllers
         public IActionResult GetEmployees()
         {
             var employees = _context.Employees.Select(e => new
-                {
-                    e.Id,
-                    e.FirstName,
-                    e.MiddleName,
-                    e.LastName,
-                    e.Address,
-                    e.Email,
-                    e.Mobile,
-                    e.CountryId,
-                    e.StateId,
-                    e.DistrictId,
-                    e.GenderId,
-                    Languages = _context.EmployeeLanguages.Where(x => x.EmployeeId == e.Id).ToList()
-            })
-                .ToList();
+            {
+                e.Id,
+                e.Name,
+                e.Email,
+                e.Mobile,
+                e.CountryId,
+                e.StateId,
+                e.DistrictId,
+                e.GenderId,
+                Languages = _context.EmployeeLanguages.Where(x => x.EmployeeId == e.Id).ToList()
+            }).ToList();
 
             return Ok(employees);
         }
@@ -43,21 +39,17 @@ namespace SSMS.API.Controllers
         public IActionResult GetEmployee(int id)
         {
             var employee = _context.Employees.Where(e => e.Id == id).Select(e => new
-                {
-                    e.Id,
-                    e.FirstName,
-                    e.MiddleName,
-                    e.LastName,
-                    e.Address,
-                    e.Email,
-                    e.Mobile,
-                    e.CountryId,
-                    e.StateId,
-                    e.DistrictId,
-                    e.GenderId,
-                    Languages = _context.EmployeeLanguages.Where(x=>x.EmployeeId == id).ToList()
-                })
-                .FirstOrDefault();
+            {
+                e.Id,
+                e.Name,
+                e.Email,
+                e.Mobile,
+                e.CountryId,
+                e.StateId,
+                e.DistrictId,
+                e.GenderId,
+                Languages = _context.EmployeeLanguages.Where(x=>x.EmployeeId == id).ToList()
+            }).FirstOrDefault();
 
             return Ok(employee);
         }
@@ -67,10 +59,7 @@ namespace SSMS.API.Controllers
         {
             var employee = new Employee
             {
-                FirstName = employeedto.FirstName,
-                MiddleName = employeedto.MiddleName,
-                LastName = employeedto.LastName,
-                Address = employeedto.Address,
+                Name = employeedto.Name,
                 Email = employeedto.Email,
                 Mobile = employeedto.Mobile,
                 CountryId = employeedto.CountryId,
@@ -100,10 +89,7 @@ namespace SSMS.API.Controllers
         {
             var employee = new Employee();
             employee.Id = employeedto.Id;
-            employee.FirstName = employeedto.FirstName;
-            employee.MiddleName = employeedto.MiddleName;
-            employee.LastName = employeedto.LastName;
-            employee.Address = employeedto.Address;
+            employee.Name = employeedto.Name;
             employee.Email = employeedto.Email;
             employee.Mobile = employeedto.Mobile;
             employee.CountryId = employeedto.CountryId;
