@@ -1,0 +1,10 @@
+﻿namespace SSMS.API.Data.Entitities.SmartHouse
+{
+    public class HouseParking
+    {
+        public int Id { get; set; }
+        public int HouseId { get; set; }               // FK → House
+        public string ParkingType { get; set; }        // Car, Bike, Both
+    }
+
+}

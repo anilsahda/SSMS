@@ -22,8 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\api\" />
-    <Folder Include="wwwroot\api\Uploads\" />
+    <Folder Include="Data\Entitities\AttendancePortal\" />
+    <Folder Include="Data\Entitities\ECommerce\" />
+    <Folder Include="Data\Entitities\DigitalLibrary\" />
+    <Folder Include="Data\Entitities\EmployeePayroll\" />
+    <Folder Include="Data\Entitities\SmartCaregiver\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 
 </Project>

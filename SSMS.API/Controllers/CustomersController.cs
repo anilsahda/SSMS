@@ -30,7 +30,7 @@ public class CustomersController : ControllerBase
         if (custDto.Image != null)
         {
             fileName = $"{Guid.NewGuid()}{Path.GetExtension(custDto.Image.FileName)}";
-            var path = Path.Combine(_env.WebRootPath, "api/Uploads", fileName);
+            var path = Path.Combine(_env.WebRootPath, "Uploads", fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             using var stream = new FileStream(path, FileMode.Create);
             await custDto.Image.CopyToAsync(stream);
@@ -65,7 +65,7 @@ public class CustomersController : ControllerBase
             // Delete old image if exists
             if (!string.IsNullOrEmpty(customer.Image))
             {
-                string oldPath = Path.Combine(_env.WebRootPath, "api/Uploads", customer.Image);
+                string oldPath = Path.Combine(_env.WebRootPath, "Uploads", customer.Image);
                 if (System.IO.File.Exists(oldPath))
                 {
                     System.IO.File.Delete(oldPath);
@@ -74,7 +74,7 @@ public class CustomersController : ControllerBase
 
             // Save new image
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(custDto.Image.FileName)}";
-            var path = Path.Combine(_env.WebRootPath, "api/Uploads", fileName);
+            var path = Path.Combine(_env.WebRootPath, "Uploads", fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             using var stream = new FileStream(path, FileMode.Create);
             await custDto.Image.CopyToAsync(stream);
@@ -96,7 +96,7 @@ public class CustomersController : ControllerBase
 
         if (!string.IsNullOrEmpty(customer.Image))
         {
-            string filePath = Path.Combine(_env.WebRootPath, "api/Uploads", customer.Image);
+            string filePath = Path.Combine(_env.WebRootPath, "Uploads", customer.Image);
             if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);

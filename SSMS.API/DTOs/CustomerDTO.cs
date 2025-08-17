@@ -8,4 +8,5 @@
         public string Mobile { get; set; }
         public IFormFile Image { get; set; }
     }
+
 }
