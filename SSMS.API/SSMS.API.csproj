@@ -22,9 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Entitities\ECommerce\" />
-    <Folder Include="Data\Entitities\EmployeePayroll\" />
-    <Folder Include="Data\Entitities\SmartCaregiver\" />
+    <Folder Include="Data\Entitities\SSEmployeePayroll\" />
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>

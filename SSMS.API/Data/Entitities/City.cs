@@ -1,6 +1,6 @@
 ﻿namespace SSMS.API.Data.Entitities
 {
-    public class District
+    public class City
     {
         public int Id { get; set; }
         public string Name { get; set; }
